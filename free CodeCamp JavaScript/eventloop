@@ -1,0 +1,24 @@
+Web Api includes:
+   Window object(Browser) gives:
+    setTimeOut
+    dom Api
+    fetch
+    localstorage
+    consolelocation
+
+All these features are availabe to us via call stack
+#* Microtask queue-> all the callback functions that comes from promises and mutationobserver are placed in microtask queue
+Generally the microtask queue has more priority that the callback queue.
+Hence when the call stack is empty the eventloop pushes the contents from microtask then only it considers the callback queue
+
+//V8 engine explanantion
+
+js engine is not a machine
+main aim is to make the js engine as fast as possible
+v8 engine is written in cpp
+Just in time compilation-- uses both interpretter and compilation
+Garbage collector uses mark&sweep algorithm for cleaning the memory heap
+
+v8 engine has ignition interpretter and turbofan optimising compiler
+v8 is the fastest js engine
+v8 uses orinoco and oilpan garbage collectors

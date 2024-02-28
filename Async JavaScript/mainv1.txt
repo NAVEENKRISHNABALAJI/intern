@@ -1,0 +1,37 @@
+
+// window.console.log("First")
+// console.log("Second")
+// console.log("Third")
+// console.log("First")
+// setTimeout(function(){
+//     console.log("Second")
+// },3000)
+// console.log("Third")
+
+//promises
+//three states: Pending, fulfilled, rejected
+const myPromise= new Promise((resolve, reject)=>{
+    const error= false
+    if(!error){
+        resolve("Yes, resolved the promise")
+    }
+    else{
+        reject("No!, rejected the promise")
+    }
+})
+
+const myNextPromise= new Promise((resolve,reject)=>{
+    setTimeout(function(){
+        console.log("My next promise is resolved")
+    },3000)
+})
+
+console.log(myPromise)// promise variable usually returns the state of the promise
+//so to get the exact value we need to use the thenables
+myPromise
+.then((value)=>{return "Hello "+value})
+.then((newValue)=>{console.log(newValue)}) 
+.catch((err)=>{console.log(err)})// if peomise state is rejected then the chain of control directly jumps to the catch statement
+
+console.log(myNextPromise)
+myNextPromise.then(value=> console.log(value))

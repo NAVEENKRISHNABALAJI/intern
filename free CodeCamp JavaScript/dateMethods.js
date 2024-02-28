@@ -1,0 +1,11 @@
+// const date= Date()
+// console.log(date)
+// console.log(typeof(date))
+const now= new Date()
+console.log(now)
+console.log(typeof(now))
+console.log(now.getDay())
+console.log(now.getFullYear())
+
+let [month,date,year]= new Date().toLocaleDateString("en-IN").split("/")//destructuring the array returned by the .toLocaeDateString()
+console.log(month,date,year)
