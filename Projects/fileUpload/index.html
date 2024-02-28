@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Documents</title>
+</head>
+<body>
+    <form >
+        <input type="text" placeholder="First Name" id="fn">
+        <input type="text" placeholder="Last Name" id="ln">
+        <input type="file" name="file" id="files" multiple>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const form= document.querySelector('form')
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+
+            const fn= document.getElementById("fn")
+            const ln= document.getElementById("ln")
+            const files= document.getElementById("files")
+
+            const formData= new FormData()
+            formData.append("fn",fn.value)
+            formData.append("ln",ln.value)
+            for(let i=0;i<files.files.length;i++){
+                formData.append(`file${i}`, files.files[i])
+            }
+
+            console.log(...formData)
+
+            fetch("http://127.0.0.1:6000/uploads",{
+                method:'POST',
+                body: formData
+            }).then(res=>res.json())
+            .then(data=> console.log(data))
+        })
+    </script>
+</body>
+</html>

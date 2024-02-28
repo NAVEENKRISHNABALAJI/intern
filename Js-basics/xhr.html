@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="myPara"></p>
+    <button onclick="sendRequest()">SendRequest</button>
+    <script>
+        let p= document.getElementById("myPara")
+        function sendRequest(){
+            const xhttp= new XMLHttpRequest()
+            xhttp.open('GET',`https://jsonplaceholder.typicode.com/users/${Math.floor(Math.random()*7+1)}`)
+            xhttp.send()
+
+            xhttp.onreadystatechange=()=>{
+            if(xhttp.readyState===4 && xhttp.status===200){
+                console.log("Ops Completed Successfully!")
+                    p.innerText= xhttp.response
+                }  
+            }
+        }
+        
+    </script>
+</body>
+</html>
