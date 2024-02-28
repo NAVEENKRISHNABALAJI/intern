@@ -1,0 +1,8 @@
+const router= require('./routes')
+const express= require('express')
+const corsMiddleware= require('./cors')
+const app= express()
+app.use(corsMiddleware)
+app.options('*',corsMiddleware)
+app.use(router)
+app.listen("8000",()=> console.log("Server listening on port 8000..."))
