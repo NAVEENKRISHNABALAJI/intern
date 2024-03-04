@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(cors({origin:'*'}))
 //app.use(bodyParser.json())
 const {initializeApp}= require('firebase/app')
-const {getFirestore, collection, addDoc, deleteDoc, getDocs, serverTimestamp}= require('firebase/firestore')
+const {getFirestore, collection, addDoc, doc, deleteDoc, getDocs, serverTimestamp}= require('firebase/firestore')
 
 const firebaseConfig = {
     apiKey: "AIzaSyCGxb9S5M9H5dfjlE_81bMQuFHYKalj7-k",
@@ -49,11 +49,12 @@ app.get('/added', async(req,res)=>{
 })
 
 app.delete("/deleteTask",async(req,res)=>{
-    const { taskId}= req.body
+    const { taskId }= req.body
     console.log(taskId)
     const docRef= doc(db,'Todo',taskId)
     await deleteDoc(docRef)
     console.log("Deleted the task with id "+ taskId)
+    res.status(200).send("DEleted the task")
 })
 
 app.listen(port,()=>{
