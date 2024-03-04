@@ -35,6 +35,27 @@ app.post('/newTask', async(req,res)=>{
     })
 })
 
+app.get('/added', async(req,res)=>{
+    let allTasks= await getDocs(collectionRef)
+    const data=[]
+    for(const task of allTasks.docs){
+        //console.log(`${task.id} => ${JSON.stringify(task.data())}`)
+        const todoData= task.data();
+        data.push({task:todoData.task ?? "",
+                    taskId: task.id})
+    }
+
+    res.status(200).json(data)
+})
+
+app.delete("/deleteTask",async(req,res)=>{
+    const { taskId}= req.body
+    console.log(taskId)
+    const docRef= doc(db,'Todo',taskId)
+    await deleteDoc(docRef)
+    console.log("Deleted the task with id "+ taskId)
+})
+
 app.listen(port,()=>{
     console.log(`Server running on port ${port}...`)
 })
